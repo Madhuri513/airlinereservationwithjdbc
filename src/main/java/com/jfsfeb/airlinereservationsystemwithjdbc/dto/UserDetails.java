@@ -14,6 +14,7 @@ public class UserDetails implements Serializable {
 	private String mailId;
 	@ToString.Exclude
 	private String password;
+	@ToString.Exclude
 	private long phoneNumber;
 	private String role;
 

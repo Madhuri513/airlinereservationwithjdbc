@@ -65,10 +65,10 @@ public class UserController {
 						if (request != null) {
 							log.info("Booking is Successful!!!!");
 							log.info("Your Booking Details are : ");
-							log.info(request.getTicketId());
-							log.info(request.getUserId());
-							log.info(request.getFlightId());
-							log.info(request.getNoOfSeatsBooked());
+							log.info(String.format("%-10s %-15s %-15s %s", "TICKET_ID", "USER_ID", "FLIGHT_ID",
+									"NUMBER_OF_SEATS"));
+							log.info(String.format("%-10s %-15s %-15s %s", request.getTicketId(), request.getUserId(),
+									request.getFlightId(), request.getNoOfSeatsBooked()));
 						}
 					} catch (AirlineSystemException e) {
 						log.error(e.getMessage());
