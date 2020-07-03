@@ -75,13 +75,13 @@ public class AdminController {
 					log.info("Flights details are:");
 
 					List<FlightDetails> records = adminServices.viewFlightDetails();
-					log.info(String.format("%-10s %-10s %-13s %-15s %-15s %-15s %-15s %s", "FLIGHT_ID", "FLIGHT_NAME",
-							"ARRIVAL_TIME", "ARRIVAL_DATE", "DEPARTURE_TIME", "DEPARTURE_DATE", "CAPACITY",
+					log.info(String.format("%-10s %-10s %-13s %-15s %-15s %-15s %-10s %-15s %-15s %s", "FLIGHT_ID", "FLIGHT_NAME",
+							"ARRIVAL_TIME", "ARRIVAL_DATE", "DEPARTURE_TIME", "DEPARTURE_DATE", "SOURCE", "DESTINATION","CAPACITY",
 							"TICKET_PRICE"));
 					for (FlightDetails details : records) {
-						log.info(String.format("%-10s %-15s %-10s %-17s %-15s %-15s %-15s %s", details.getFlightId(),
+						log.info(String.format("%-10s %-15s %-10s %-17s %-15s %-13s %-10s %-15s %-15s %s", details.getFlightId(),
 								details.getFlightName(), details.getArrivalTime(), details.getArrivalDate(),
-								details.getDepartureTime(), details.getDepartureDate(), details.getSeats(),
+								details.getDepartureTime(), details.getDepartureDate(), details.getSource(),details.getDestination(), details.getSeats(),
 								details.getPrice()));
 					}
 
@@ -191,25 +191,25 @@ public class AdminController {
 						userId = userId + 1000;
 					}
 					userInfo.setUserId(userId);
-					log.info("Your User id is: " + userId);
+					log.info("Your id is: " + userId);
 
-					log.info("Enter your name");
+					log.info("Enter name");
 					String name = scan.next();
 					userInfo.setName(name);
 
-					log.info("Enter your phone number");
+					log.info("Enter phone number");
 					long phone = scan.nextLong();
 					userInfo.setPhoneNumber(phone);
 
-					log.info("Enter your email");
+					log.info("Enter email");
 					String email = scan.next();
 					userInfo.setMailId(email);
 
-					log.info("Enter your password");
+					log.info("Enter password");
 					String password = scan.next();
 					userInfo.setPassword(password);
 
-					log.info("Enter your role");
+					log.info("Enter role");
 					String role = checkRole();
 					userInfo.setRole(role);
 
@@ -236,15 +236,15 @@ public class AdminController {
 
 						flightId = scan.nextInt();
 						List<FlightDetails> search = adminServices.searchFlight(flightId);
-						log.info(String.format("%-10s %-10s %-13s %-15s %-15s %-15s %-15s %s", "FLIGHT_ID",
-								"FLIGHT_NAME", "ARRIVAL_TIME", "ARRIVAL_DATE", "DEPARTURE_TIME", "DEPARTURE_DATE",
-								"CAPACITY", "TICKET_PRICE"));
+						log.info(String.format("%-10s %-10s %-13s %-15s %-15s %-15s %-10s %-15s %-15s %s", "FLIGHT_ID", "FLIGHT_NAME",
+								"ARRIVAL_TIME", "ARRIVAL_DATE", "DEPARTURE_TIME", "DEPARTURE_DATE", "SOURCE", "DESTINATION","CAPACITY",
+								"TICKET_PRICE"));
 						if (search != null) {
 							for (FlightDetails details : search) {
-								log.info(String.format("%-10s %-15s %-10s %-17s %-15s %-15s %-15s %s",
-										details.getFlightId(), details.getFlightName(), details.getArrivalTime(),
-										details.getArrivalDate(), details.getDepartureTime(),
-										details.getDepartureDate(), details.getSeats(), details.getPrice()));
+								log.info(String.format("%-10s %-15s %-10s %-17s %-15s %-13s %-10s %-15s %-15s %s", details.getFlightId(),
+										details.getFlightName(), details.getArrivalTime(), details.getArrivalDate(),
+										details.getDepartureTime(), details.getDepartureDate(), details.getSource(),details.getDestination(), details.getSeats(),
+										details.getPrice()));
 							}
 						}
 

@@ -44,15 +44,15 @@ public class LoginController {
 		
 		log.info("************************************Welcome to Airline Reservation System**********************************");
 		log.info("                          --------------Available Flights details are ----------------");
-		log.info(String.format("%-10s %-10s %-13s %-15s %-15s %-15s %-15s %s", "FLIGHT_ID", "FLIGHT_NAME",
-				"ARRIVAL_TIME", "ARRIVAL_DATE", "DEPARTURE_TIME", "DEPARTURE_DATE", "CAPACITY",
+		log.info(String.format("%-10s %-10s %-13s %-15s %-15s %-15s %-10s %-15s %-15s %s", "FLIGHT_ID", "FLIGHT_NAME",
+				"ARRIVAL_TIME", "ARRIVAL_DATE", "DEPARTURE_TIME", "DEPARTURE_DATE", "SOURCE", "DESTINATION","CAPACITY",
 				"TICKET_PRICE"));
 
 		List<FlightDetails> records = service.getFlightDetails();
 		for (FlightDetails details : records) {
-			log.info(String.format("%-10s %-15s %-10s %-17s %-15s %-15s %-15s %s", details.getFlightId(),
+			log.info(String.format("%-10s %-15s %-10s %-17s %-15s %-13s %-10s %-15s %-15s %s", details.getFlightId(),
 					details.getFlightName(), details.getArrivalTime(), details.getArrivalDate(),
-					details.getDepartureTime(), details.getDepartureDate(), details.getSeats(),
+					details.getDepartureTime(), details.getDepartureDate(), details.getSource(),details.getDestination(), details.getSeats(),
 					details.getPrice()));
 		}
 
@@ -78,14 +78,14 @@ public class LoginController {
 
 					try {
 						List<FlightDetails> search = service.searchFlightBySourceAndDestination(source1, destination1);
-						log.info(String.format("%-10s %-10s %-13s %-15s %-15s %-15s %-15s %s", "FLIGHT_ID", "FLIGHT_NAME",
-								"ARRIVAL_TIME", "ARRIVAL_DATE", "DEPARTURE_TIME", "DEPARTURE_DATE", "CAPACITY",
+						log.info(String.format("%-10s %-10s %-13s %-15s %-15s %-15s %-10s %-15s %-15s %s", "FLIGHT_ID", "FLIGHT_NAME",
+								"ARRIVAL_TIME", "ARRIVAL_DATE", "DEPARTURE_TIME", "DEPARTURE_DATE", "SOURCE", "DESTINATION","CAPACITY",
 								"TICKET_PRICE"));
 						if (search != null) {
 							for (FlightDetails details : search) {
-								log.info(String.format("%-10s %-15s %-10s %-17s %-15s %-15s %-15s %s", details.getFlightId(),
+								log.info(String.format("%-10s %-15s %-10s %-17s %-15s %-13s %-10s %-15s %-15s %s", details.getFlightId(),
 										details.getFlightName(), details.getArrivalTime(), details.getArrivalDate(),
-										details.getDepartureTime(), details.getDepartureDate(), details.getSeats(),
+										details.getDepartureTime(), details.getDepartureDate(), details.getSource(),details.getDestination(), details.getSeats(),
 										details.getPrice()));
 							}
 						}

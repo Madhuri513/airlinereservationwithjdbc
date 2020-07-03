@@ -57,7 +57,6 @@ public class AdminDAOImple implements AdminDAO {
 	public boolean deleteFlights(int id) {
 		try(Connection connection = connector.getConnection();
 				PreparedStatement myStmt = connection.prepareStatement(connector.getQuery("deletequery"));) {
-
 			myStmt.setInt(1, id);
 			result = myStmt.executeUpdate();
 			if (result > 0) {
@@ -74,9 +73,6 @@ public class AdminDAOImple implements AdminDAO {
 		List<FlightDetails> searchFlight = new ArrayList<FlightDetails>();
 		try(Connection connection = connector.getConnection();
 				PreparedStatement myStmt = connection.prepareStatement(connector.getQuery("searchquery"));) {
-			
-//			String query = "select * from  fligthinfo where fligthid=?";
-			
 			myStmt.setInt(1, id);
 			rs = myStmt.executeQuery();
 			if (rs.next()) {
@@ -132,9 +128,6 @@ public class AdminDAOImple implements AdminDAO {
 		List<UserDetails> allUsers = new ArrayList<UserDetails>();
 		try(Connection connection = connector.getConnection();
 				PreparedStatement myStmt = connection.prepareStatement(connector.getQuery("getuser"));) {
-			
-//			String query = "select * from  userinfo";
-			
 			rs = myStmt.executeQuery();
 			while (rs.next()) {
 				UserDetails userBean1 = new UserDetails();
@@ -142,7 +135,6 @@ public class AdminDAOImple implements AdminDAO {
 				userBean1.setName(rs.getString("name"));
 				userBean1.setMailId(rs.getString("email"));
 				userBean1.setPassword(rs.getString("password"));
-				userBean1.setPhoneNumber(rs.getInt("phonenumber"));
 				userBean1.setRole(rs.getString("role"));
 				allUsers.add(userBean1);
 			}
@@ -157,14 +149,12 @@ public class AdminDAOImple implements AdminDAO {
 		List<TicketsInfo> bookings = new ArrayList<TicketsInfo>();
 		try(Connection connection = connector.getConnection();
 				PreparedStatement myStmt = connection.prepareStatement(connector.getQuery("getticket"));) {
-			
-			
-//			String query = "select * from  ticketsinfo";
-			
 			rs = myStmt.executeQuery();
 			while (rs.next()) {
 				TicketsInfo tickets = new TicketsInfo();
 				tickets.setTicketId(rs.getInt("ticketId"));
+				tickets.setUserId(rs.getInt("user_id"));
+				tickets.setFlightId(rs.getInt("flight_id"));
 				tickets.setNoOfSeatsBooked(rs.getInt("seats"));
 				bookings.add(tickets);
 			}
