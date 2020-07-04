@@ -95,8 +95,11 @@ public class UserController {
 					try {
 						
 						List<TicketsInfo> tickets = userServices.getTicketDetails(userId2);
+						log.info(String.format("%-10s %-15s %-15s %s", "TICKET_ID", "USER_ID", "FLIGHT_ID",
+								"NUMBER_OF_SEATS"));
 						for (TicketsInfo details : tickets) {
-							log.info(details);
+							log.info(String.format("%-10s %-15s %-15s %s", details.getTicketId(), details.getUserId(),
+									details.getFlightId(), details.getNoOfSeatsBooked()));
 						}
 						break;
 					} catch (AirlineSystemException e) {
